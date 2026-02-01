@@ -87,9 +87,10 @@ export default function Projects() {
                 <motion.button
                   onClick={() => setSelectedProject(selectedProject === idx ? null : idx)}
                   className="w-full text-left group"
-                  whileHover={{ y: -4 }}
+                  whileHover={{ y: -4, rotateX: 5, rotateY: 5 }}
+                  style={{ transformStyle: 'preserve-3d' }}
                 >
-                  <div className={`relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-lg border border-slate-700/50 hover:border-cyan-500/50 rounded-2xl p-8 md:p-10 transition-all duration-300 overflow-hidden`}>
+                  <div className={`relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-lg border border-slate-700/50 hover:border-cyan-500/50 rounded-2xl p-8 md:p-10 transition-all duration-300 overflow-hidden`} style={{ transform: 'translateZ(0)' }}>
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br from-cyan-500 to-blue-500 transition-opacity" />
 
                     <div className="relative z-10">

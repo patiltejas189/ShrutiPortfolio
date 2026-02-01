@@ -69,8 +69,10 @@ export default function Skills() {
                 key={idx}
                 variants={itemVariants}
                 className="group"
+                whileHover={{ rotateX: 5, rotateY: 5 }}
+                style={{ transformStyle: 'preserve-3d' }}
               >
-                <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-lg border border-slate-700/50 hover:border-cyan-500/50 rounded-xl p-8 transition-all duration-300 h-full">
+                <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-lg border border-slate-700/50 hover:border-cyan-500/50 rounded-xl p-8 transition-all duration-300 h-full" style={{ transform: 'translateZ(0)' }}>
                   <h3 className="text-2xl font-semibold mb-6 text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text">
                     {category.title}
                   </h3>

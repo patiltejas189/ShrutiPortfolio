@@ -95,11 +95,17 @@ export default function About() {
                 <motion.div
                   key={i}
                   variants={itemVariants}
-                  whileHover={{ y: -5 }}
+                  whileHover={{ y: -5, rotateX: 10, rotateY: 10 }}
                   className="group bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-lg border border-slate-700/30 hover:border-cyan-500/50 rounded-xl p-6 transition-all duration-300"
+                  style={{ transformStyle: 'preserve-3d' }}
                 >
                   <div className="mb-4 inline-block p-3 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg group-hover:from-blue-500/30 group-hover:to-cyan-500/30 transition-all">
-                    <Icon className="text-cyan-400" size={24} />
+                    <motion.div
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
+                    >
+                      <Icon className="text-cyan-400" size={24} />
+                    </motion.div>
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                   <p className="text-slate-400">{feature.description}</p>
