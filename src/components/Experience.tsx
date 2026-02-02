@@ -241,7 +241,44 @@ export default function Experience() {
               </motion.button>
             ))}
           </div>
-
+               {/* Career Timeline */}
+          <motion.div className="pt-12">
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-8">
+                Career Timeline
+              </h3>
+              <div className="relative h-2 bg-gradient-to-r from-blue-500 via-cyan-500 to-orange-500 rounded-full mb-12" />
+              <div className="flex justify-between px-2">
+                <div className="text-center flex-1">
+                  <div className="relative">
+                    <div className="w-8 h-8 bg-orange-500 rounded-full mx-auto mb-2 shadow-lg shadow-orange-500/30" />
+                    <div className="absolute left-1/2 -translate-x-1/2 top-10 w-px h-12 bg-gradient-to-b from-orange-500/50 to-transparent" />
+                  </div>
+                  <p className="text-orange-300 font-medium text-lg">Ken & Co.</p>
+                  <p className="text-slate-300">IT Intern</p>
+                  <p className="text-sm text-slate-400 mt-1">Aug 2023</p>
+                </div>
+                <div className="text-center flex-1">
+                  <div className="relative">
+                    <div className="w-8 h-8 bg-cyan-500 rounded-full mx-auto mb-2 shadow-lg shadow-cyan-500/30" />
+                    <div className="absolute left-1/2 -translate-x-1/2 top-10 w-px h-12 bg-gradient-to-b from-cyan-500/50 to-transparent" />
+                  </div>
+                  <p className="text-cyan-300 font-medium text-lg">Aditya Birla</p>
+                  <p className="text-slate-300">IT Intern</p>
+                  <p className="text-sm text-slate-400 mt-1">Jul 2025</p>
+                </div>
+                <div className="text-center flex-1">
+                  <div className="relative">
+                    <div className="w-10 h-10 bg-green-500 rounded-full mx-auto mb-2 shadow-lg shadow-green-500/30" />
+                    <div className="absolute left-1/2 -translate-x-1/2 top-12 w-px h-12 bg-gradient-to-b from-green-500/50 to-transparent" />
+                  </div>
+                  <p className="text-green-300 font-medium text-lg">Aditya Birla</p>
+                  <p className="text-slate-300">Full-Stack Dev</p>
+                  <p className="text-sm text-slate-400 mt-1">Jan 2025</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
 
