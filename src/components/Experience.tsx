@@ -13,6 +13,7 @@ export default function Experience() {
       role: 'Full-Stack Developer',
       location: 'Mumbai',
       duration: 'January 2025 - Present',
+      logo: '/Aditya_Birla_Group.png',
       highlights: [
         'Developed an OCR-based live camera scanner system to automatically extract and digitize data from documents',
         'Built a Flutter mobile application designed to streamline internal stakeholder operations and workflows',
@@ -26,6 +27,7 @@ export default function Experience() {
       role: 'IT Intern',
       location: 'Mumbai',
       duration: 'July 2025 - December 2025',
+      logo: '/Aditya_Birla_Group.png',
       highlights: [
         'Developed an OCR-based live camera scanner system to automatically extract and digitize data from documents',
         'Built a Flutter mobile application designed to streamline internal stakeholder operations and workflows',
@@ -39,6 +41,7 @@ export default function Experience() {
       role: 'IT Intern',
       location: 'Bangalore',
       duration: 'August 2023 - September 2023',
+      logo: '/KenNCo.png',
       highlights: [
         'Assisted in preparation and documentation of meeting minutes for IT audit project process walkthrough calls',
         'Conducted platform analysis of various startup clients to understand their operational structures',
@@ -105,7 +108,10 @@ export default function Experience() {
                           <h3 className="text-2xl font-bold text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text">
                             {exp.role}
                           </h3>
-                          <span className="text-slate-400 text-sm md:text-base">at {exp.company}</span>
+                          <div className="flex items-center gap-2">
+                            <img src={exp.logo} alt={`${exp.company} logo`} className="w-8 h-8 md:w-10 md:h-10 object-contain" />
+                            <span className="text-slate-400 text-sm md:text-base">at {exp.company}</span>
+                          </div>
                         </div>
                         <p className="text-slate-400 text-sm md:text-base">
                           {exp.location} • {exp.duration}
