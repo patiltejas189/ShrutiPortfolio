@@ -57,6 +57,19 @@ export default function Hero() {
         >
           <motion.div
             variants={itemVariants}
+            className="flex justify-center mb-8"
+          >
+            <motion.img
+              src="/Shruti.jpeg"
+              alt="Shruti Jain"
+              className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-cyan-400 shadow-lg shadow-cyan-500/50"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            />
+          </motion.div>
+          <motion.div
+            variants={itemVariants}
             className="space-y-4"
           >
             <motion.h1
