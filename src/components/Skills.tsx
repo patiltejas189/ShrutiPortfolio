@@ -125,7 +125,7 @@ export default function Skills() {
   );
 
   return (
-    <section id="skills" className="relative py-20 md:py-32 px-6 bg-slate-950 overflow-hidden">
+    <section id="skills" className="relative py-20 md:py-12 px-6 bg-slate-950 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full mix-blend-screen blur-3xl" />

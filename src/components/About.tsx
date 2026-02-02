@@ -44,7 +44,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="relative py-20 md:py-32 px-6 bg-slate-950">
+    <section id="about" className="relative py-20 md:py-12 px-6 bg-slate-950">
 
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/20 rounded-full mix-blend-screen blur-3xl animate-pulse" />

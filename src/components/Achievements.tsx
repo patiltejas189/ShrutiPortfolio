@@ -64,7 +64,7 @@ export default function Achievements() {
   };
 
   return (
-    <section id="achievements" className="relative py-20 md:py-32 px-6 bg-slate-950">
+    <section id="achievements" className="relative py-20 md:py-12 px-6 bg-slate-950">
       <div className="absolute inset-0 opacity-20">
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full mix-blend-screen blur-3xl" />
       </div>

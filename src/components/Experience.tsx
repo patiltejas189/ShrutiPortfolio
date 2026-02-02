@@ -130,7 +130,7 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="relative py-20 md:py-32 px-4 bg-slate-950">
+    <section id="experience" className="relative py-20 md:py-12 px-4 bg-slate-950">
       {/* Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl" />
