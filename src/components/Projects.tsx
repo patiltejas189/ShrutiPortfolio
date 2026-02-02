@@ -1,7 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { X } from 'lucide-react';
-import ThreeBackground from './ThreeBackground';
 
 export default function Projects() {
   const ref = useRef(null);
@@ -59,7 +58,6 @@ export default function Projects() {
 
   return (
     <section id="projects" className="relative py-20 md:py-32 px-6 bg-slate-950">
-      <ThreeBackground />
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full mix-blend-screen blur-3xl" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-screen blur-3xl" />

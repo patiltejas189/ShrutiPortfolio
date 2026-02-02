@@ -11,6 +11,7 @@ import Contact from './components/Contact';
 import Navigation from './components/Navigation';
 import FloatingParticles from './components/FloatingParticles';
 import CustomCursor from './components/CustomCursor';
+import ThreeBackground from './components/ThreeBackground';
 
 export default function App() {
   const [scrollY, setScrollY] = useState(0);
@@ -28,7 +29,7 @@ export default function App() {
       <div className="bg-slate-950 text-white overflow-x-hidden">
         <CustomCursor />
         <FloatingParticles />
-
+        
         <motion.div
           style={{
             y: scrollY * 0.5,
@@ -38,6 +39,8 @@ export default function App() {
           <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full mix-blend-screen blur-3xl animate-pulse" />
           <div className="absolute bottom-40 right-20 w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-screen blur-3xl animate-pulse delay-1000" />
         </motion.div>
+
+        <ThreeBackground />
 
         <Navigation scrollY={scrollY} />
 

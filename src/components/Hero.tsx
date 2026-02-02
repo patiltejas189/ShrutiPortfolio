@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, ExternalLink } from 'lucide-react';
-import ThreeBackground from './ThreeBackground';
 import { useState, useEffect } from 'react';
 
 export default function Hero() {
@@ -41,7 +40,6 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
-      <ThreeBackground />
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/20 rounded-full mix-blend-screen blur-3xl animate-pulse" />
         <div className="absolute bottom-40 right-20 w-96 h-96 bg-cyan-500/20 rounded-full mix-blend-screen blur-3xl animate-pulse delay-1000" />
