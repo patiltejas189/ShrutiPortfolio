@@ -196,7 +196,8 @@ export default function Contact() {
           transition={{ delay: 0.6 }}
           className="max-w-4xl mx-auto px-6 py-4 text-center text-slate-500 text-sm"
         >
-          <p>© 2025 Shruti Jain. Designed & Built with React + Framer Motion.</p>
+          <p>© 2025 Shruti Jain. All rights reserved.</p>
+
         </motion.div>
       </footer>
     </section>
