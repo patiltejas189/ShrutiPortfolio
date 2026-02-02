@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import ThreeBackground from './ThreeBackground';
 
 export default function Experience() {
   const ref = useRef(null);
@@ -71,7 +72,8 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="relative py-20 md:py-32 px-6 bg-gradient-to-b from-slate-950 to-slate-900">
+    <section id="experience" className="relative py-20 md:py-32 px-6 bg-slate-950">
+      <ThreeBackground />
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 right-20 w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-screen blur-3xl" />
       </div>
