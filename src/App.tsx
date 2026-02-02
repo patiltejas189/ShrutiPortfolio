@@ -10,7 +10,6 @@ import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Navigation from './components/Navigation';
 import FloatingParticles from './components/FloatingParticles';
-import CustomCursor from './components/CustomCursor';
 import ThreeBackground from './components/ThreeBackground';
 
 export default function App() {
@@ -27,7 +26,6 @@ export default function App() {
   return (
     <AnimatePresence>
       <div className="bg-slate-950 text-white overflow-x-hidden">
-        <CustomCursor />
         <FloatingParticles />
         
         <motion.div
