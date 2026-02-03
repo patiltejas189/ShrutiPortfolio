@@ -21,6 +21,7 @@ export default function Skills() {
     { name: "Node JS", icon: "🟢" },
     { name: "Bootstrap", icon: "🎪" },
     { name: "ASP.Net", icon: "🌐" },
+    { name: "Data Structure in Java", icon: "☕" },
   ];
 
   const toolsPlatforms = [

@@ -76,12 +76,7 @@ export default function About() {
                 shapes user experiences, which led me to explore full-stack development, mobile applications, and
                 AI integration.
               </span>
-              <span className="block">
-                Currently interning at Birla White, Aditya Birla Group, where I'm building real-world solutions
-                including OCR-based data extraction systems and Flutter applications that solve internal operational
-                challenges. I'm driven by the challenge of creating elegant solutions to complex problems and deeply
-                value clean code, user-centric design, and continuous learning.
-              </span>
+              
               <span className="block">
                 Beyond technical skills, I believe in collaboration, adaptability, and the power of diverse perspectives
                 in creating products that matter. I'm enthusiastic about internship opportunities where I can contribute

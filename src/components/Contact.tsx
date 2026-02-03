@@ -1,12 +1,12 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Mail, Smartphone, Linkedin, Github, Send } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
 
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [state, handleSubmit] = useForm("mqelgeob");
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -25,15 +25,6 @@ export default function Contact() {
       y: 0,
       transition: { duration: 0.6 },
     },
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: '', email: '', message: '' });
-      setSubmitted(false);
-    }, 3000);
   };
 
   const socialLinks = [
@@ -123,12 +114,12 @@ export default function Contact() {
                 <motion.input
                   whileFocus={{ scale: 1.02 }}
                   type="text"
+                  name="name"
                   required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-cyan-400 focus:outline-none transition-all"
                   placeholder="Your name"
                 />
+                <ValidationError prefix="Name" field="name" errors={state.errors} />
               </motion.div>
 
               <motion.div variants={itemVariants}>
@@ -136,35 +127,39 @@ export default function Contact() {
                 <motion.input
                   whileFocus={{ scale: 1.02 }}
                   type="email"
+                  name="email"
                   required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-cyan-400 focus:outline-none transition-all"
                   placeholder="your@email.com"
                 />
+                <ValidationError prefix="Email" field="email" errors={state.errors} />
               </motion.div>
 
               <motion.div variants={itemVariants}>
                 <label className="block text-sm font-semibold mb-2 text-slate-300">Message</label>
                 <motion.textarea
                   whileFocus={{ scale: 1.02 }}
+                  name="message"
                   required
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={4}
                   className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-cyan-400 focus:outline-none transition-all resize-none"
                   placeholder="Your message..."
                 />
+                <ValidationError prefix="Message" field="message" errors={state.errors} />
               </motion.div>
 
               <motion.button
-                whileHover={submitted ? {} : { scale: 1.05, y: -2 }}
-                whileTap={submitted ? {} : { scale: 0.95 }}
+                whileHover={state.submitting ? {} : { scale: 1.05, y: -2 }}
+                whileTap={state.submitting ? {} : { scale: 0.95 }}
                 type="submit"
-                disabled={submitted}
+                disabled={state.submitting}
                 className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
               >
-                {submitted ? (
+                {state.submitting ? (
+                  <>
+                    <span>Submitting...</span>
+                  </>
+                ) : state.succeeded ? (
                   <>
                     <span>Message Sent!</span>
                   </>
