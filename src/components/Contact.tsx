@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Mail, Smartphone, Linkedin, Github, Send } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
 
@@ -7,6 +7,12 @@ export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [state, handleSubmit] = useForm("mqelgeob");
+
+  // ✅ added: controlled values + validation state
+  const [values, setValues] = useState({ name: '', email: '', message: '' });
+  const [touched, setTouched] = useState({ name: false, email: false, message: false });
+  const [localErrors, setLocalErrors] = useState({});
+  const [submitError, setSubmitError] = useState('');
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -53,6 +59,78 @@ export default function Contact() {
       value: 'GitHub Profile',
     },
   ];
+
+  // ✅ added: validation helpers
+  const validate = (v) => {
+    const errors = {};
+
+    const name = (v.name || '').trim();
+    const email = (v.email || '').trim();
+    const message = (v.message || '').trim();
+
+    if (!name) errors.name = 'Name is required.';
+    else if (name.length < 2) errors.name = 'Name must be at least 2 characters.';
+
+    // basic email regex (works well for frontend validation)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) errors.email = 'Email is required.';
+    else if (!emailRegex.test(email)) errors.email = 'Please enter a valid email address.';
+
+    if (!message) errors.message = 'Message is required.';
+    else if (message.length < 10) errors.message = 'Message must be at least 10 characters.';
+
+    return errors;
+  };
+
+  // keep local errors updated while user types (only show when touched)
+  useEffect(() => {
+    setLocalErrors(validate(values));
+  }, [values]);
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setValues((prev) => ({ ...prev, [name]: value }));
+    // clear generic submit error once user edits
+    if (submitError) setSubmitError('');
+  };
+
+  const onBlur = (e) => {
+    const { name } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+  };
+
+  // ✅ added: wrap submit to block invalid form and show proper messages
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    // mark all fields touched so errors show
+    setTouched({ name: true, email: true, message: true });
+
+    const errs = validate(values);
+    setLocalErrors(errs);
+    setSubmitError('');
+
+    if (Object.keys(errs).length > 0) return;
+
+    try {
+      await handleSubmit(e);
+      // if succeeded, reset local inputs (Formspree state keeps succeeded flag)
+      // reset only when success
+      // NOTE: state.succeeded updates after handleSubmit
+    } catch (err) {
+      setSubmitError('Something went wrong. Please try again.');
+    }
+  };
+
+  // reset form after success (optional, but makes UX clean)
+  useEffect(() => {
+    if (state.succeeded) {
+      setValues({ name: '', email: '', message: '' });
+      setTouched({ name: false, email: false, message: false });
+      setLocalErrors({});
+      setSubmitError('');
+    }
+  }, [state.succeeded]);
 
   return (
     <section id="contact" className="relative py-20 md:py-12 px-6 bg-slate-950">
@@ -106,9 +184,23 @@ export default function Contact() {
 
             <motion.form
               variants={itemVariants}
-              onSubmit={handleSubmit}
+              onSubmit={onSubmit}
               className="space-y-4"
             >
+              {/* ✅ Success message */}
+              {state.succeeded && (
+                <div className="p-4 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-200">
+                  Your message has been sent successfully. I’ll get back to you soon!
+                </div>
+              )}
+
+              {/* ✅ Error message */}
+              {!state.succeeded && (submitError || (state.errors && state.errors.length > 0)) && (
+                <div className="p-4 rounded-lg border border-rose-500/30 bg-rose-500/10 text-rose-200">
+                  {submitError || 'Submission failed. Please check the form and try again.'}
+                </div>
+              )}
+
               <motion.div variants={itemVariants}>
                 <label className="block text-sm font-semibold mb-2 text-slate-300">Name</label>
                 <motion.input
@@ -116,10 +208,18 @@ export default function Contact() {
                   type="text"
                   name="name"
                   required
+                  value={values.name}
+                  onChange={onChange}
+                  onBlur={onBlur}
                   className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-cyan-400 focus:outline-none transition-all"
                   placeholder="Your name"
                 />
+                {/* Formspree validation error (kept) */}
                 <ValidationError prefix="Name" field="name" errors={state.errors} />
+                {/* ✅ local validation error */}
+                {touched.name && localErrors.name && (
+                  <p className="mt-2 text-sm text-rose-300">{localErrors.name}</p>
+                )}
               </motion.div>
 
               <motion.div variants={itemVariants}>
@@ -129,10 +229,16 @@ export default function Contact() {
                   type="email"
                   name="email"
                   required
+                  value={values.email}
+                  onChange={onChange}
+                  onBlur={onBlur}
                   className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-cyan-400 focus:outline-none transition-all"
                   placeholder="your@email.com"
                 />
                 <ValidationError prefix="Email" field="email" errors={state.errors} />
+                {touched.email && localErrors.email && (
+                  <p className="mt-2 text-sm text-rose-300">{localErrors.email}</p>
+                )}
               </motion.div>
 
               <motion.div variants={itemVariants}>
@@ -142,10 +248,16 @@ export default function Contact() {
                   name="message"
                   required
                   rows={4}
+                  value={values.message}
+                  onChange={onChange}
+                  onBlur={onBlur}
                   className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-cyan-400 focus:outline-none transition-all resize-none"
                   placeholder="Your message..."
                 />
                 <ValidationError prefix="Message" field="message" errors={state.errors} />
+                {touched.message && localErrors.message && (
+                  <p className="mt-2 text-sm text-rose-300">{localErrors.message}</p>
+                )}
               </motion.div>
 
               <motion.button
@@ -192,7 +304,6 @@ export default function Contact() {
           className="max-w-4xl mx-auto px-6 py-4 text-center text-slate-500 text-sm"
         >
           <p>© 2025 Shruti Jain. All rights reserved.</p>
-
         </motion.div>
       </footer>
     </section>
